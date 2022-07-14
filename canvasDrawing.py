@@ -31,16 +31,24 @@ while True:
 
         pygame.draw.rect(gameScreen, (0,255,0), (0,0,40,40))
         
-        if event.type == pygame.MOUSEWHEEL:            
-            wheelRotation +=1
-            if wheelRotation > 2:
-                wheelRotation = 0 
-            print(wheelRotation)
+        if event.type == pygame.MOUSEBUTTONDOWN:   
+            if event.button == 4:
+                wheelRotation +=1
+                if wheelRotation > 2:
+                    wheelRotation = 0         
+                print(wheelRotation)
+            elif event.button == 5:
+                wheelRotation -=1
+                if wheelRotation < 0:
+                    wheelRotation = 2
+                print(wheelRotation)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            mouseIsDown = True
+            if event.button ==1:
+                mouseIsDown = True
         elif event.type == pygame.MOUSEBUTTONUP:
-            mouseIsDown = False
+            if event.button ==1:
+                mouseIsDown = False
 
         if event.type == pygame.MOUSEMOTION and mouseIsDown == True:
             x, y = pygame.mouse.get_pos()
