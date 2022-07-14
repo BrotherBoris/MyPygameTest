@@ -2,13 +2,23 @@ import random
 import sys
 import pygame
 from pygame.locals import *
+import matrix
 
-screensize = (800,600)
-gameScreen = pygame.display.set_mode(screensize)
+screenHeight = 500
+screenWidth = 500
+gameScreen = pygame.display.set_mode((screenHeight,screenWidth))
 pygame.display.set_caption("Game")
 pygame.init()
 frame = pygame.time.Clock()
 
+
+class particle:
+    def __init__(self, pos):
+        self.x, self.y = pos
+        self.color = (240,230,140)
+
+    def simulate(self):
+        pass
 
 class Entity:
     def __init__(self,tagname,size):
@@ -28,30 +38,21 @@ class Entity:
         if pygame.key.get_pressed()[K_s]:
             self.y +=1                        
 
-entities = []
-
 player = Entity("Player",20)
 
-enemy = Entity("Enemy", 20)
-enemy.color = (255,0,0)
-enemy.x = enemy.y = 200
+grains = []
 
 while True:
     frame.tick(60)
     gameScreen.fill((0,0,0))
-
-    #for i in range(0,len(entities)):
-    #    pygame.draw.rect(gameScreen,entities[i].color,(entities[i].x,entities[i].y,entities[i].size,entities[i].size))
-        
-    player_body = pygame.draw.rect(gameScreen,player.color,(player.x,player.y,player.size,player.size))
-    enemy_body = pygame.draw.rect(gameScreen,enemy.color,(enemy.x,enemy.y,enemy.size,enemy.size))
-
-    
-    if player_body.colliderect(enemy_body):
-        enemy.x = random.randint(0,800-20)
-        enemy.y = random.randint(0,600-20)
-
     player.detectInputMove()
+
+    #for i in range(0,len(grains)):
+    #    pygame.draw.rect(gameScreen,grains[i].color,(grains[i].x,grains[i].y,grains[i].size,grains[i].size))
+        
+    pygame.draw.rect(gameScreen,player.color,(player.x,player.y,player.size,player.size))
+
+
 
     for event in pygame.event.get():   
         
@@ -60,5 +61,5 @@ while True:
             pygame.quit()
         
             exit()
+
     pygame.display.update()
-    
