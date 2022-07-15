@@ -1,7 +1,7 @@
 # MyPygameTest
 Testing basic elements of pygame
 
--Canvas Drawing
+-Canvas Drawing<br>
     A simple screen with mouse functionality of drawing and color changing by mouse scroll
 
 -Cube fall
