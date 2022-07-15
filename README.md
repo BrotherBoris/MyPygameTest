@@ -1,14 +1,14 @@
 # MyPygameTest
 Testing basic elements of pygame
 
--Canvas Drawing<br>
-    A simple screen with mouse functionality of drawing and color changing by mouse scroll
+-Canvas Drawing:<br>
+    A simple screen with mouse functionality of drawing and color changing by mouse scroll.
 
--Cube fall
-    A simple screen with falling cubes that reposition and change color, mouse 1 spawn cubes
+-Cube fall:<br>
+    A simple screen with falling cubes that reposition and change color, mouse 1 spawn cubes.
 
--Particle Simulation and Matrix(WIP)
-    will simulate grains of sand using a custom matrix class
+-Particle Simulation and Matrix(WIP):<br>
+    will simulate grains of sand using a custom matrix class.
 
--main
-    depending on commit, will have the latest features i am learning
+-main:<br>
+    depending on commit, will have the latest features i am learning.
