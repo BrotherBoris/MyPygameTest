@@ -10,5 +10,8 @@ Testing basic elements of pygame
 -Particle Simulation and Matrix(WIP):<br>
     will simulate grains of sand using a custom matrix class.
 
+-Side Scroller 2D(wip):<br>
+    A simple side scroller
+
 -main:<br>
     depending on commit, will have the latest features i am learning.

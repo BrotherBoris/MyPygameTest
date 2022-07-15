@@ -3,11 +3,13 @@ import sys
 import pygame
 from pygame.locals import *
 
-screensize = (800,600)
+screenBoundX, screenBoundY =(800,600)
+screensize = (screenBoundX,screenBoundY)
 gameScreen = pygame.display.set_mode(screensize)
 pygame.display.set_caption("Game")
 pygame.init()
 frame = pygame.time.Clock()
+
 
 
 class Entity:
@@ -18,16 +20,30 @@ class Entity:
         self.size =  size
         self.color = (255,255,255)
         self.speed = 5
+        self.fallSpeed = 5
 
     def detectInputMove(self):
         if pygame.key.get_pressed()[K_d]:
             self.x +=self.speed
         if pygame.key.get_pressed()[K_a]:
-            self.x -=self.speed    
-        if pygame.key.get_pressed()[K_w]:
-            self.y -=self.speed
-        if pygame.key.get_pressed()[K_s]:
-            self.y +=self.speed                        
+            self.x -=self.speed
+     
+    def fall(self):
+        if self.fallSpeed > 0:
+            self.y += self.fallSpeed
+
+    def simulateGravity(self):
+        if self.y != screenBoundY - self.size:
+            self.fallSpeed = 5
+        if self.y == screenBoundY - self.size:
+            self.fallSpeed = 0
+        if self.y > screenBoundY - self.size:
+            self.y = screenBoundY - self.size
+        self.fall()
+
+    def enabled(self):
+        self.detectInputMove()
+        self.simulateGravity()                  
 
 entities = []
 
@@ -49,10 +65,10 @@ while True:
 
     
     if player_body.colliderect(enemy_body):
-        enemy.x = random.randint(0,800-20)
-        enemy.y = random.randint(0,600-20)
+        enemy.x = random.randint(0,screenBoundX-20)
+        enemy.y = random.randint(0,screenBoundY-20)
 
-    player.detectInputMove()
+    player.enabled()
 
     for event in pygame.event.get():   
         
